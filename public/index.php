@@ -1,8 +1,14 @@
 <?php
 
-use App\Controllers\HomeController;
+spl_autoload_register(static function ($class) {
+  $path = __DIR__ . '/../src/' . lcfirst(str_replace('\\', '/',
+      $class)) . '.php';
+  if (file_exists($path)) {
+    require $path;
+  }
+});
 
-require_once "../src/app/Controllers/HomeController.php";
+use App\Controllers\HomeController;
 
 $greeting = new HomeController();
 $greeting->sayHello('Raul');
