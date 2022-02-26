@@ -28,7 +28,7 @@ services:
     ports:
       - "8000:80"
   db:
-      image: mariadb:10.8.2
+    image: mariadb:10.8.2
     hostname: db
     container_name: project-mariadb
     restart: always
