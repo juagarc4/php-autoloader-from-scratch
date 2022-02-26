@@ -3,3 +3,6 @@
 
 # Project files
 .env
+
+# MySQL Files
+docker/mysql

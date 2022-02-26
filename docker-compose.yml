@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    hostname: app
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: project-app
+    env_file:
+      - ./.env
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - app_network
+  nginx:
+    image: nginx:1.19-alpine
+    hostname: nginx
+    container_name: project-nginx
+    restart: always
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+    networks:
+      - app_network
+    ports:
+      - "8000:80"
+  db:
+      image: mariadb:10.8.2
+    hostname: db
+    container_name: project-mariadb
+    restart: always
+    env_file:
+      - ./.env
+    command: "--max-allowed-packet=8388608"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    networks:
+      - app_network
+    ports:
+      - "3306:3306"
+
+networks:
+  app_network:
+    driver: bridge
