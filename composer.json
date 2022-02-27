@@ -1,0 +1,26 @@
+{
+    "name": "rgarcia/project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raul Garcia",
+            "email": "raulgarciacanet@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    },
+
+    "require": {}
+}

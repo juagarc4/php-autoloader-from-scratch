@@ -1,12 +1,6 @@
 <?php
 
-spl_autoload_register(static function ($class) {
-  $path = __DIR__ . '/../src/' . lcfirst(str_replace('\\', '/',
-      $class)) . '.php';
-  if (file_exists($path)) {
-    require $path;
-  }
-});
+require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\HomeController;
 
