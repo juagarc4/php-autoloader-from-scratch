@@ -1,8 +1,8 @@
 <?php
 
-use App\Controllers\HomeController;
+require __DIR__ . '/../vendor/autoload.php';
 
-require_once "../src/app/Controllers/HomeController.php";
+use App\Controllers\HomeController;
 
 $greeting = new HomeController();
 $greeting->sayHello('Raul');

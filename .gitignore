@@ -3,6 +3,8 @@
 
 # Project files
 .env
+/vendor/
 
 # MySQL Files
 docker/mysql
+
