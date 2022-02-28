@@ -1,22 +1,32 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace App\Controllers;
 
 use PDO;
-class HomeController {
 
-  public function dbConnect() {
-    try {
-      $db = new PDO('mysql:host=db;dbname=project', 'project', 'project');
-    } catch (\PDOException $e) {
-      throw new \PDOException($e->getMessage(), $e->getCode());
+class HomeController
+{
+
+    public function dbConnect()
+    {
+        try {
+            $db = new PDO(
+              'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'],
+              $_ENV['DB_USER'],
+              $_ENV['DB_PASSWORD']
+            );
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), $e->getCode());
+        }
+
+        echo "<br>Connection to DB was established";
     }
 
-    echo "Connection to DB was established";
-  }
+    public function sayHello(string $name): void
+    {
+        echo "Hello $name";
+    }
 
-  public function sayHello(string $name): void {
-    echo "Hello $name";
-  }
 }
