@@ -26,5 +26,8 @@
         "phpunit/phpunit": "9.5.x-dev",
         "squizlabs/php_codesniffer": "4.0.x-dev",
         "phpstan/phpstan": "1.4.x-dev"
+    },
+    "require": {
+        "vlucas/phpdotenv": "5.4.x-dev"
     }
 }
