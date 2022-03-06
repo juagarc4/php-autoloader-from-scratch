@@ -1,22 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
+
+use App\View;
+use JetBrains\PhpStorm\Pure;
 
 class UsersController
 {
 
-    public function index()
+    #[Pure]
+    public function index(): View
     {
-        return "USERS";
+        return View::make('users/index', ['users' => 'users here']);
     }
 
-    public function create(): string
+    #[Pure]
+    public function create(): View
     {
-        return '<form action="/users/create" method="post" name="form_user_create">
-        <label>Username</label><input type="text" name="user_name"/>
-        <label>Password</label><input type="password" name="user_password"/>
-        <button>Save</button>
-        </form>';
+        return View::make('users/create');
     }
 
     public function save(): void
