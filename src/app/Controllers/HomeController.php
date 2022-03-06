@@ -9,7 +9,12 @@ use PDO;
 class HomeController
 {
 
-    public function dbConnect()
+    public static function index(): string
+    {
+        return 'HOME';
+    }
+
+    public function dbConnect(): string
     {
         try {
             $db = new PDO(
