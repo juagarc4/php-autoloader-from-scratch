@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\View;
+use JetBrains\PhpStorm\Pure;
 use PDO;
 
 class HomeController
 {
 
-    public static function index(): string
+    #[Pure]
+    public static function index(): View
     {
-        return 'HOME';
+        return View::make('index');
     }
 
     public function dbConnect(): string

@@ -2,10 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Controllers\HomeController;
-
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
+
+const VIEW_PATH = __DIR__ . '/../src/app/Views';
 
 $router = new App\Router();
 $router->get('/', [App\Controllers\HomeController::class, 'index']);
