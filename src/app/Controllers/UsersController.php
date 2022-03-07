@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\App;
 use App\View;
 use JetBrains\PhpStorm\Pure;
 
@@ -13,6 +14,9 @@ class UsersController
     #[Pure]
     public function index(): View
     {
+        $db = App::db();
+        $result = $db->query('SELECT * FROM users')->execute();
+
         return View::make('users/index', ['users' => 'users here']);
     }
 

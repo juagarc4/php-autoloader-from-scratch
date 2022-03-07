@@ -46,7 +46,7 @@ class View
 
         // Another option is to use:
         // extract($this->params, EXTR_OVERWRITE);
-        // but is is 20%-80% slower
+        // but it is 20%-80% slower
 
         ob_start();
         include $viewPath;
