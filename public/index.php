@@ -1,5 +1,11 @@
 <?php
 
+use App\App;
+use App\Config;
+use App\Controllers\HomeController;
+use App\Controllers\UsersController;
+use App\Router;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -7,16 +13,18 @@ $dotenv->load();
 
 const VIEW_PATH = __DIR__ . '/../src/app/Views';
 
-$router = new App\Router();
-$router->get('/', [App\Controllers\HomeController::class, 'index']);
-$router->get('/users', [App\Controllers\UsersController::class, 'index']);
-$router->get(
-  '/users/create',
-  [App\Controllers\UsersController::class, 'create']
-);
-$router->post(
-  '/users/create',
-  [App\Controllers\UsersController::class, 'save']
-);
+$router = new Router();
+$router->get('/', [HomeController::class, 'index'])
+  ->get('/users', [UsersController::class, 'index'])
+  ->get('/users/create', [UsersController::class, 'create'])
+  ->post('/users/create', [UsersController::class, 'save']);
 
-echo $router->resolve($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+
+(new App(
+  $router,
+  [
+    'uri' => $_SERVER['REQUEST_URI'],
+    'method' => $_SERVER['REQUEST_METHOD'],
+  ],
+  new Config($_ENV)
+))->run();
