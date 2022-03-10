@@ -10,24 +10,17 @@ use PDO;
 class App
 {
 
-    private static PDO $db;
+    private static DB $db;
 
     public function __construct(
       protected Router $router,
-      protected array $request
+      protected array $request,
+      protected Config $config
     ) {
-        try {
-            static::$db = new PDO(
-              'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'],
-              $_ENV['DB_USER'],
-              $_ENV['DB_PASSWORD']
-            );
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), $e->getCode());
-        }
+        static::$db = new DB($config->db ?? []);
     }
 
-    public static function db(): PDO
+    public static function db(): DB
     {
         return static::$db;
     }
